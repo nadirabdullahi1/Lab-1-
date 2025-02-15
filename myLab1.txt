@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+// Static variable to track the number of changes
+static int changeCount = 0;
+
+
+void printRecords() {
+    printf("\n\nYou have entered the Print all records function\n\n");
+}
+
+void addRecord() {
+    int partNumber;
+    char partName[50];
+    float partSize;
+    char partSizeMetric[10];
+    float partCost;
+
+    printf("\n\nYou have entered the Add a Record function\n");
+    printf("Enter Part number: ");
+    scanf("%d", &partNumber);
+    printf("Enter Part name: ");
+    scanf(" %[^\n]s", partName);  // To read string with spaces
+    printf("Enter Part size: ");
+    scanf("%f", &partSize);
+    printf("Enter Part size metric (e.g., mm, lbs): ");
+    scanf(" %[^\n]s", partSizeMetric);
+    printf("Enter Part cost: ");
+    scanf("%f", &partCost);
+
+    // Adding records
+    printf("\nYou entered:\n");
+    printf("Part number = %d\n", partNumber);
+    printf("Part name = \"%s\"\n", partName);
+    printf("Part size = %f\n", partSize);
+    printf("Part size metric = \"%s\"\n", partSizeMetric);
+    printf("Part cost = $%f\n", partCost);
+
+    // Increment changes
+    changeCount++;
+}
+
+void deleteRecord() {
+    printf("\n\nYou have entered the Delete last record function\n");
+    
+    // Increment changes
+    changeCount++;
+    }
+
+void printNumberOfRecords() {
+    printf("\n\nYou have entered the Print number of records function\n");
+
+}
+
+void printDatabaseSize() {
+    printf("\n\nYou have entered the Print database size function\n");
+}
+
+void printNumChanges(bool print) {
+    if (print) {
+        printf("\n\nYou have modified the records %d times\n", changeCount);
+    } else {
+        changeCount++;
+        printf("\n%d modifications so far\n", changeCount);
+    }
+}
+
+int main() {
+    int looper = 6;
+    int selection;
+
+    while (looper <= 6) {
+        printf("\n\nParts Inventory Manager\n\n");
+        printf("1. Print all records\n");
+        printf("2. Add record\n");
+        printf("3. Delete last record\n");
+        printf("4. Print number of records\n");
+        printf("5. Print database size\n");
+        printf("6. Print number of changes\n");
+        printf("7. Exit\n\n");
+
+        printf("Please enter your selection: ");
+        scanf("%d", &selection);
+
+        switch (selection) {
+            case 1:
+                printRecords();
+                break;
+
+            case 2:
+                addRecord();
+                break;
+
+            case 3:
+                deleteRecord();
+                break;
+
+            case 4:
+                printNumberOfRecords();
+                break;
+
+            case 5:
+                printDatabaseSize();
+                break;
+
+            case 6:
+                printNumChanges(true);  
+                break;
+
+            case 7:
+                printf("\n\nExiting Now...\n\n");
+                looper = selection;
+                break;
+
+            default:
+                printf("Invalid selection, please try again.\n");
+        }
+    }
+
+    return 0;
+}
